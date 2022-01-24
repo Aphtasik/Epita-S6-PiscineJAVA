@@ -1,4 +1,6 @@
-package fr.epita.assistant;
+package fr.epita.assistant.dto;
+
+import fr.epita.assistant.dto.GameEngine;
 
 public class Main {
 

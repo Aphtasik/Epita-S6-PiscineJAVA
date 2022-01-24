@@ -1,4 +1,4 @@
-package fr.epita.assistant;
+package fr.epita.assistant.dto;
 import fr.epita.assistant.dto.BoardDTO;
 import fr.epita.assistant.game.Board;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +22,7 @@ public final class GameEngine {
     }
 
     public void play() {
-        System.out.println("Welcome to the game!");
+        System.out.println("Welcome to the fr.epita.assistant.game!");
         this.initializeBoard();
         this.playCLIGame();
     }

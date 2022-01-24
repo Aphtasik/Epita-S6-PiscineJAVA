@@ -27,7 +27,7 @@ public final class GameEngine {
     }
 
     public void play() {
-        System.out.println("Welcome to the game!");
+        System.out.println("Welcome to the fr.epita.assistant.game!");
         this.initializeBoard();
         if (pathToCommands.equals("")) {
             this.playCLIGame();
@@ -177,7 +177,7 @@ public final class GameEngine {
      * */
 
     //Save the list of commands in a .txt file
-    //Call outputJson to save the result of the game in a .json file
+    //Call outputJson to save the result of the fr.epita.assistant.game in a .json file
     private void gameOutput(StringBuilder logs) {
         if (logs != null) {
             System.out.println("Enter a name for the log files");
@@ -195,7 +195,7 @@ public final class GameEngine {
         }
     }
 
-    //Save the result of the game in a .json file
+    //Save the result of the fr.epita.assistant.game in a .json file
     private void outputJson(String filename) {
         OutputDTO.Coord coord = null;
         if (board.getPlayer().isAlive())

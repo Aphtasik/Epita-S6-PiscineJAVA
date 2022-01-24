@@ -28,7 +28,7 @@ public final class GameEngine {
     }
 
     public void play() {
-        System.out.println("Welcome to the game!");
+        System.out.println("Welcome to the fr.epita.assistant.game!");
         this.initializeBoard();
         if (pathToCommands.equals("")) {
             this.playCLIGame();

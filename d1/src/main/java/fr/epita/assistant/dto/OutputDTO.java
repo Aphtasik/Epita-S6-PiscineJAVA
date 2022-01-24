@@ -7,26 +7,26 @@ import java.util.ArrayList;
 
 public final class OutputDTO {
     @Nullable
-    private final fr.epita.assistant.dto.OutputDTO.PlayerInfos playerInfos;
+    private final OutputDTO.PlayerInfos playerInfos;
     @NotNull
-    private final fr.epita.assistant.dto.OutputDTO.Coord wizardCoord;
+    private final OutputDTO.Coord wizardCoord;
     @NotNull
-    private final ArrayList<fr.epita.assistant.dto.OutputDTO.Infos> foods;
+    private final ArrayList<OutputDTO.Infos> foods;
     @NotNull
-    private final ArrayList<fr.epita.assistant.dto.OutputDTO.Infos> monsters;
+    private final ArrayList<OutputDTO.Infos> monsters;
 
 
     @Nullable
-    public fr.epita.assistant.dto.OutputDTO.PlayerInfos getPlayerInfos() {
+    public OutputDTO.PlayerInfos getPlayerInfos() {
         return this.playerInfos;
     }
 
     @NotNull
-    public fr.epita.assistant.dto.OutputDTO.Coord getWizardCoord() {
+    public OutputDTO.Coord getWizardCoord() {
         return this.wizardCoord;
     }
 
-    public OutputDTO(@Nullable fr.epita.assistant.dto.OutputDTO.PlayerInfos playerInfos, @NotNull fr.epita.assistant.dto.OutputDTO.Coord wizardCoord, @NotNull ArrayList<fr.epita.assistant.dto.OutputDTO.Infos> foods, @NotNull ArrayList<fr.epita.assistant.dto.OutputDTO.Infos> monsters) {
+    public OutputDTO(@Nullable OutputDTO.PlayerInfos playerInfos, @NotNull OutputDTO.Coord wizardCoord, @NotNull ArrayList<OutputDTO.Infos> foods, @NotNull ArrayList<OutputDTO.Infos> monsters) {
         this.playerInfos = playerInfos;
         this.wizardCoord = wizardCoord;
         this.foods = foods;
@@ -34,19 +34,19 @@ public final class OutputDTO {
     }
 
     @NotNull
-    public ArrayList<fr.epita.assistant.dto.OutputDTO.Infos> getFoods() {
+    public ArrayList<OutputDTO.Infos> getFoods() {
         return this.foods;
     }
 
     @NotNull
-    public ArrayList<fr.epita.assistant.dto.OutputDTO.Infos> getMonsters() {
+    public ArrayList<OutputDTO.Infos> getMonsters() {
         return this.monsters;
     }
 
     public static final class PlayerInfos {
         private final boolean isAlive;
         @Nullable
-        private final fr.epita.assistant.dto.OutputDTO.Coord position;
+        private final OutputDTO.Coord position;
         private final int health;
         private final @NotNull ArrayList<String> inventory;
 
@@ -55,7 +55,7 @@ public final class OutputDTO {
         }
 
         @Nullable
-        public fr.epita.assistant.dto.OutputDTO.Coord getPosition() {
+        public OutputDTO.Coord getPosition() {
             return this.position;
         }
 
@@ -63,7 +63,7 @@ public final class OutputDTO {
             return this.health;
         }
 
-        public PlayerInfos(boolean isAlive, @Nullable fr.epita.assistant.dto.OutputDTO.Coord position, int health, @NotNull ArrayList<String> inventory) {
+        public PlayerInfos(boolean isAlive, @Nullable OutputDTO.Coord position, int health, @NotNull ArrayList<String> inventory) {
             super();
             this.isAlive = isAlive;
             this.position = position;
