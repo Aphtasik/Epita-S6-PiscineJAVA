@@ -1,6 +1,6 @@
 package fr.epita.assistant.game.characters;
 
-public abstract class Character implements Attacker {
+public abstract class Character {
     // Attributes
     protected String name;
     protected int health;
@@ -44,14 +44,6 @@ public abstract class Character implements Attacker {
 
     public int getArmour() {
         return this.armour;
-    }
-
-    // Constructor
-    public Character(String name, int health, int armour) {
-        setArmour(armour);
-        setHealth(health);
-        setIsAlive(true);
-        this.name = name;
     }
 
     // Methodes
