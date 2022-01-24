@@ -54,7 +54,7 @@ public final class Player extends Character implements Attacker {
 
     @Override
     public void takeDamage(int damage) {
-        System.out.println("You take" + damage + "damage");
+        System.out.println("You take " + damage + " damage");
         if (isDead())
         {
             System.out.println("You are dead");

@@ -16,7 +16,7 @@ public class Wizard extends Character {
 
     @Override
     public void takeDamage(int damage) {
-        System.out.println("Intelli Jee take" + damage + "damage");
+        System.out.println("Intelli Jee take " + damage + " damage");
         this.setHealth(getHealth() - damage);
         if (isDead())
         {
