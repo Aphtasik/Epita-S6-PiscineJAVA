@@ -15,6 +15,7 @@ public abstract class Character {
     public void setHealth(int health) {
         if (health < 0) {
             this.health = 0;
+            setIsAlive(false);
         }
         else {
             this.health = health;
@@ -49,6 +50,10 @@ public abstract class Character {
     // Methodes
     public boolean isDead() {
         return !isAlive;
+    }
+
+    public boolean isAlive() {
+            return isAlive;
     }
 
     public abstract void printStats();
