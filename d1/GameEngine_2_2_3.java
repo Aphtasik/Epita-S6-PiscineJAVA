@@ -5,7 +5,6 @@ import fr.epita.assistant.dto.BoardDTO;
 import fr.epita.assistant.dto.OutputDTO;
 import fr.epita.assistant.game.Board;
 import fr.epita.assistant.game.characters.*;
-import fr.epita.assistant.game.utils.*;
 
 import java.io.*;
 import java.util.*;

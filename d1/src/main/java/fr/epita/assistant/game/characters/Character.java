@@ -1,6 +1,6 @@
 package fr.epita.assistant.game.characters;
 
-public abstract class Character {
+public abstract class Character implements Attacker {
     // Attributes
     protected String name;
     protected int health;

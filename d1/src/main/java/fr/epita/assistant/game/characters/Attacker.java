@@ -1,4 +1,5 @@
 package fr.epita.assistant.game.characters;
 
-public class Attacker {
+public interface Attacker {
+    public void attack(Character character);
 }
