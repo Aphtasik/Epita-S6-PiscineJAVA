@@ -1,5 +1,6 @@
 package fr.epita.assistant.mytinyepita;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComputerRoom {
@@ -32,6 +33,9 @@ public class ComputerRoom {
     public ComputerRoom(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
+        this.students = new ArrayList<>();
+        this.assistants = new ArrayList<>();
+        this.size = 0;
     }
 
     public void addStudent(final Student student) throws InsertionException
