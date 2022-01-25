@@ -69,7 +69,7 @@ public class Board {
             for (int j = 0; j < size; j++)
             {
                 stringBuilder.append("| ");
-                Coord coord = new Coord(j, i);
+                Coord coord = new Coord(i, j);
 
                 if (foods.containsKey(coord))
                 {
@@ -83,12 +83,12 @@ public class Board {
                     isFull = 1;
                 }
 
-                if (wizard.getCoord().getY() == i && wizard.getCoord().getX() == j)
+                if (wizard.getCoord().getX() == i && wizard.getCoord().getY() == j)
                 {
                     stringBuilder.append(wizard.toString());
                     isFull = 1;
                 }
-                if (player.getCoord().getY() == i && player.getCoord().getX() == j)
+                if (player.getCoord().getX() == i && player.getCoord().getY() == j)
                 {
                     stringBuilder.append(player.toString());
                     isFull = 1;
