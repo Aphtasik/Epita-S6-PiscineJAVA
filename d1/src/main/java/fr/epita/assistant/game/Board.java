@@ -88,7 +88,7 @@ public class Board {
                     stringBuilder.append(wizard.toString());
                     isFull = 1;
                 }
-                if (player.getCoord().getY() == j && player.getCoord().getX() == i)
+                if (player.getCoord().getY() == i && player.getCoord().getX() == j)
                 {
                     stringBuilder.append(player.toString());
                     isFull = 1;
