@@ -68,8 +68,8 @@ public class School {
             if (i != 0)
             {
                 System.out.println("---");
-                i++;
             }
+            i+=1;
             System.out.println(computerRoom.getName() + " (" + computerRoom.getSize() + "/" + computerRoom.getCapacity() + ")");
             System.out.println("Assistants:");
             for (Assistant assistant : computerRoom.getAssistants())

@@ -42,7 +42,7 @@ public class ComputerRoom {
     {
         if (getSize() >= getCapacity())
         {
-            throw new InsertionException("Room is full");
+            throw new InsertionException("Room is full.");
         }
         else if (students.contains(student))
         {
@@ -136,7 +136,7 @@ public class ComputerRoom {
 
     public void removeAssistant(final Assistant assistant)
     {
-        if (!students.contains(assistant))
+        if (!assistants.contains(assistant))
         {
             throw new IllegalArgumentException("Assistant is not inside the room.");
         }
