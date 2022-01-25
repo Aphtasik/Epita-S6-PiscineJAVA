@@ -40,7 +40,7 @@ public abstract class Monster extends Character implements Attacker {
     @Override
     public void takeDamage(int damage) {
         System.out.println(getName() + " takes " + damage + " damage");
-        setHealth(getHealth() - damage);
+        setHealth(getHealth() - damage - 1);
         setArmour(getArmour() - 1);
 
         if (isDead())
