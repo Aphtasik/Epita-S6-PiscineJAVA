@@ -87,10 +87,12 @@ public final class Player extends Character implements Attacker {
         if (!inventory.isEmpty())
         {
             System.out.println("Inventory: ");
-            for (int i = 0; i < inventory.size(); i++)
+            int i = 0;
+            for (i = 0; i < inventory.size() - 1; i++)
             {
                 System.out.println(inventory.get(i).getName());
             }
+            System.out.print(inventory.get(i).getName());
         }
     }
 
