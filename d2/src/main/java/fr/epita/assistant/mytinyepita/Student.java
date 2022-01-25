@@ -75,12 +75,12 @@ public class Student extends Person implements Observable<Student>, Observer<New
         System.out.println(login + " reads the news.");
     }
 
-    public void subscribeToNewsGroup(Newsgroup newsgroup)
+    public void subscribeToNewsgroup(Newsgroup newsgroup)
     {
         newsgroup.register(this);
     }
 
-    public void unsubscribeToNewsGroup(Newsgroup newsgroup)
+    public void unsubscribeToNewsgroup(Newsgroup newsgroup)
     {
         newsgroup.unregister(this);
     }
