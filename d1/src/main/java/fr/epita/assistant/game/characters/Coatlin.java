@@ -3,6 +3,7 @@ package fr.epita.assistant.game.characters;
 public class Coatlin extends Monster {
     public Coatlin()
     {
+        setIsAlive(true);
         setHealth(100);
         setArmour(10);
         setDamage(10);

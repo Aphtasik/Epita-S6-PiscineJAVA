@@ -38,7 +38,7 @@ public class Newsgroup implements Observable<Newsgroup> {
 
     public void postNews(final Person person, final String message)
     {
-        System.out.println(person.getLogin() + " send a news in " + this.getName() + ".");
+        System.out.println(person.getLogin() + " sends a news in " + this.getName() + ".");
         System.out.println("Message: " + message);
         // TODO: fire(event) 1.3.3
         fire(this);

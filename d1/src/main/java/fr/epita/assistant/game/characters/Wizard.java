@@ -88,7 +88,7 @@ public class Wizard extends Character {
         }
         else
         {
-            player.setHealth(player.getDamage() + 20);
+            player.setDamage(player.getDamage() + 20);
             setManaPoint(getManaPoint() - 15);
             System.out.println("Intelli Jee screams \"Eclipse !\" and enchant your weapon, you now deal " + player.getDamage() + " damage with each attack");
             return true;

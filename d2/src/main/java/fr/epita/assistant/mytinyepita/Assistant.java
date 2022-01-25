@@ -20,7 +20,7 @@ public class Assistant extends Person implements Observer<Student> {
         }
         else if (event.getStatus().equals(Status.TIRED))
         {
-            System.out.println(this.login + " suggest " + event.getLogin() + " to go to sleep.");
+            System.out.println(this.login + " suggests " + event.getLogin() + " to go to sleep.");
         }
     }
 }

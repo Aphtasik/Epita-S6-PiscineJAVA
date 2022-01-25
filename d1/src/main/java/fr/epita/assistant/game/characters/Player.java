@@ -43,7 +43,7 @@ public final class Player extends Character implements Attacker {
         setArmour(15);
         setIsAlive(true);
         this.name = "Player";
-        inventory = null;
+        inventory = new ArrayList<Food>();
     }
 
     public void addFood(Food food)
@@ -53,14 +53,14 @@ public final class Player extends Character implements Attacker {
 
     public Food takeFood(String foodName)
     {
-        Food get = null;
+        Food get = new Food() {};
         for (int i = 0; i < inventory.size(); i++)
         {
-            if (inventory.get(i).getName() == foodName)
+            if (inventory.get(i).getName().equals(foodName))
             {
-
                get = inventory.get(i);
                inventory.remove(i);
+               break;
             }
         }
         return get;
@@ -68,7 +68,8 @@ public final class Player extends Character implements Attacker {
 
     public void eatFood(Food food)
     {
-        setHealth(getHealth() + food.getCalories());
+        takeFood(food.getName());
+        this.setHealth(this.getHealth() + food.getCalories());
     }
 
     @Override
@@ -94,6 +95,8 @@ public final class Player extends Character implements Attacker {
     @Override
     public void takeDamage(int damage) {
         System.out.println("You take " + damage + " damage");
+        setHealth(getHealth() - damage + (getArmour()/2));
+        setArmour(getArmour() - 1);
         if (isDead())
         {
             System.out.println("You are dead");

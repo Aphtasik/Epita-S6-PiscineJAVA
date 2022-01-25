@@ -118,7 +118,6 @@ public final class GameEngine {
                 turn++;
                 if (!choice.equals("talk"))
                     board.getWizard().setManaPoint(board.getWizard().getManaPoint() + 10);
-                this.removeDeadMonsters();
                 if (board.getMonsters().isEmpty()) {
                     System.out.println("You won!");
                     break;
@@ -515,15 +514,6 @@ public final class GameEngine {
             availableFood.append("Burned Steak");
         }
         return availableFood;
-    }
-
-    private void removeDeadMonsters() {
-        for (Map.Entry<Coord, Monster> entry :
-                this.board.getMonsters().entrySet()) {
-            if (entry.getValue().isDead()) {
-                this.board.getMonsters().remove(entry.getKey());
-            }
-        }
     }
 
     /*
