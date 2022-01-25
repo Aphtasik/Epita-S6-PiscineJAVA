@@ -54,7 +54,7 @@ public class Wizard extends Character {
         System.out.println("Health: " + this.health);
         System.out.println("Damage: 0");
         System.out.println("Armour: " + this.armour);
-        System.out.println("ManaPoint: " + this.manaPoint);
+        System.out.println("Mana Point: " + this.manaPoint);
     }
 
     public void heal(Player player)
@@ -90,7 +90,7 @@ public class Wizard extends Character {
         {
             player.setDamage(player.getDamage() + 20);
             setManaPoint(getManaPoint() - 15);
-            System.out.println("Intelli Jee screams \"Eclipse !\" and enchant your weapon, you now deal " + player.getDamage() + " damage with each attack");
+            System.out.println("Intelli Jee screams \"Eclipse !\" and enchants your weapon, you now deal " + player.getDamage() + " damage with each attack");
             return true;
         }
 
