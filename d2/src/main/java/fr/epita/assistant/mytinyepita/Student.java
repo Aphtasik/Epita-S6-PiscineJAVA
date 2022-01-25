@@ -30,7 +30,7 @@ public class Student extends Person implements Observable<Student>, Observer<New
         if (energy <= 0)
         {
             this.energy = 0;
-            setStatus(Status.ASKING_FOR_HELP);
+            setStatus(Status.TIRED);
         }
         else
         {
@@ -91,7 +91,7 @@ public class Student extends Person implements Observable<Student>, Observer<New
         {
             throw new IllegalStateException("Student must be in a room to work.");
         }
-        else if (this.energy <= 0)
+        else if (this.getStatus().equals(Status.TIRED))
         {
             throw new IllegalStateException(this.login + " is too tired to work.");
         }
