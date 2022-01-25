@@ -13,6 +13,6 @@ public class Coatlin extends Monster {
     @Override
     public void attack(Character character) {
         super.attack(character);
-        character.takeDamage(getDamage() + (int)(0.1 * getHealth()) + 1);
+        character.takeDamage(getDamage() + (int)(0.1 * getHealth()));
     }
 }
