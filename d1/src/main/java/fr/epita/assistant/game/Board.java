@@ -64,9 +64,9 @@ public class Board {
         int isFull = 0;
         int k;
 
-        for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
         {
-            for (int j = 0; j < size; j++)
+            for (int i = 0; i < size; i++)
             {
                 stringBuilder.append("| ");
                 Coord coord = new Coord(i, j);
