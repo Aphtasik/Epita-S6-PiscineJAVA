@@ -114,9 +114,9 @@ public final class Player extends Character implements Attacker {
     {
         switch (direction)
         {
-            case UP -> this.coord.setX(this.coord.getX() - 1);
+            case UP -> this.coord.setX(this.coord.getY() - 1);
             case DOWN -> this.coord.setX(this.coord.getY() + 1);
-            case LEFT -> this.coord.setY(this.coord.getY() - 1);
+            case LEFT -> this.coord.setY(this.coord.getX() - 1);
             default -> this.coord.setY(this.coord.getX() + 1);
         }
     }
