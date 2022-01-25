@@ -76,7 +76,7 @@ public final class Player extends Character implements Attacker {
     public void attack(Character character)
     {
         character.takeDamage(this.damage);
-        setDamage(this.damage - 1);
+        setDamage(this.damage);
     }
 
     @Override
