@@ -13,6 +13,6 @@ public class Skalah extends Monster {
     @Override
     public void attack(Character character) {
         super.attack(character);
-        character.takeDamage(getDamage());
+        character.takeDamage(getDamage() + 1);
     }
 }
