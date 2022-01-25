@@ -95,7 +95,6 @@ public class ComputerRoom {
             student.register(assistant);
         }
         assistant.setAvailable(false);
-        this.size += 1;
     }
 
     public void addAssistants(final Assistant... assistants) throws InsertionException {
@@ -145,7 +144,6 @@ public class ComputerRoom {
             student.unregister(assistant);
         }
         assistant.setAvailable(true);
-        this.size -= 1;
     }
 
     public void removeAssistants(final Assistant... assistants)
