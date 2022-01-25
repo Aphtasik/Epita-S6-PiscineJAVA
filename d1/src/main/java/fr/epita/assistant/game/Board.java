@@ -1,15 +1,31 @@
 package fr.epita.assistant.game;
 
+import fr.epita.assistant.game.characters.Monster;
 import fr.epita.assistant.game.characters.Player;
 import fr.epita.assistant.game.characters.Wizard;
+import fr.epita.assistant.game.food.Cookable;
+import fr.epita.assistant.game.food.Food;
 import fr.epita.assistant.game.utils.Coord;
 import fr.epita.assistant.game.utils.Direction;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Board {
 
     private int size;
     private Player player;
     private Wizard wizard;
+    private HashMap<Coord, Monster> monsters;
+    private HashMap<Coord, Food> foods;
+
+    public HashMap<Coord, Monster> getMonsters() {
+        return monsters;
+    }
+
+    public HashMap<Coord, Food> getFoods() {
+        return foods;
+    }
 
     public Wizard getWizard() {
         return wizard;
@@ -35,31 +51,46 @@ public class Board {
         this.size = size;
     }
 
-    // TODO: add player ?
-    public Board(int size, Player player, Wizard wizard) {
+    public Board(int size, Player player, Wizard wizard, HashMap<Coord, Monster> monsters, HashMap<Coord, Food> foods) {
         setSize(size);
         setPlayer(player);
         setWizard(wizard);
+        this.monsters = monsters;
+        this.foods = foods;
     }
 
     public String printBoard() {
         var stringBuilder = new StringBuilder("");
         int isFull = 0;
+        int k;
 
         for (int i = 0; i < size; i++)
         {
-            for (int j = 0; j < size - 1; j++)
+            for (int j = 0; j < size; j++)
             {
                 stringBuilder.append("| ");
+                Coord coord = new Coord(i, j);
+
+                if (foods.containsKey(coord))
+                {
+                    stringBuilder.append(foods.get(coord).toString());
+                    isFull = 1;
+                }
+
+                if (monsters.containsKey(coord))
+                {
+                    stringBuilder.append(monsters.get(coord).toString());
+                    isFull = 1;
+                }
 
                 if (wizard.getCoord().getX() == i && wizard.getCoord().getY() == j)
                 {
-                    stringBuilder.append("W");
+                    stringBuilder.append(wizard.toString());
                     isFull = 1;
                 }
                 if (player.getCoord().getX() == i && player.getCoord().getY() == j)
                 {
-                    stringBuilder.append("P");
+                    stringBuilder.append(player.toString());
                     isFull = 1;
                 }
 

@@ -1,13 +1,20 @@
 package fr.epita.assistant.game.characters;
 
+import fr.epita.assistant.game.food.Food;
 import fr.epita.assistant.game.utils.Coord;
 import fr.epita.assistant.game.utils.Direction;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 
 public final class Player extends Character implements Attacker {
     private int damage;
     private Coord coord;
+    private ArrayList<Food> inventory;
+
+    public ArrayList<Food> getInventory() {
+        return inventory;
+    }
 
     public Coord getCoord() {
         return coord;
@@ -36,6 +43,32 @@ public final class Player extends Character implements Attacker {
         setArmour(15);
         setIsAlive(true);
         this.name = "Player";
+        inventory = null;
+    }
+
+    public void addFood(Food food)
+    {
+        inventory.add(food);
+    }
+
+    public Food takeFood(String foodName)
+    {
+        Food get = null;
+        for (int i = 0; i < inventory.size(); i++)
+        {
+            if (inventory.get(i).getName() == foodName)
+            {
+
+               get = inventory.get(i);
+               inventory.remove(i);
+            }
+        }
+        return get;
+    }
+
+    public void eatFood(Food food)
+    {
+        setHealth(getHealth() + food.getCalories());
     }
 
     @Override
@@ -47,6 +80,12 @@ public final class Player extends Character implements Attacker {
 
     @Override
     public void printStats() {
+        System.out.println("Intentory: ");
+        for (int i = 0; i < inventory.size(); i++)
+        {
+            System.out.println(inventory.get(i).getName());
+        }
+
         System.out.println("Health: " + this.health);
         System.out.println("Damage: " + this.damage);
         System.out.println("Armour: " + this.armour);
@@ -75,5 +114,10 @@ public final class Player extends Character implements Attacker {
             case LEFT -> this.coord.setY(this.coord.getY() - 1);
             default -> this.coord.setY(this.coord.getY() + 1);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "P";
     }
 }

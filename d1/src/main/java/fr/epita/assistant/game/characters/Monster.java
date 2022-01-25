@@ -27,7 +27,7 @@ public abstract class Monster extends Character implements Attacker {
 
     @Override
     public void attack(Character character) {
-        System.out.println(name + " attacks Player");
+        System.out.println(name + " attacks " + character.name);
     }
 
     @Override
@@ -35,5 +35,23 @@ public abstract class Monster extends Character implements Attacker {
         System.out.println("Health: " + this.health);
         System.out.println("Damage: " + this.damage);
         System.out.println("Armour: " + this.armour);
+    }
+
+    @Override
+    public void takeDamage(int damage) {
+        System.out.println(getName() + " takes " + damage + " damage");
+        int deal = damage - (int)(damage * 0.1);
+        setHealth(getHealth() - deal);
+        setArmour(getArmour() - 1);
+
+        if (isDead())
+        {
+            System.out.println(getName() + " is dead");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "M";
     }
 }
