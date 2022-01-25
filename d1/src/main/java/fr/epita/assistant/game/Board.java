@@ -69,7 +69,7 @@ public class Board {
             for (int j = 0; j < size; j++)
             {
                 stringBuilder.append("| ");
-                Coord coord = new Coord(i, j);
+                Coord coord = new Coord(j, i);
 
                 if (foods.containsKey(coord))
                 {
