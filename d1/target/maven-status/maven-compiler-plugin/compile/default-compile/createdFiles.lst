@@ -21,6 +21,7 @@ fr/epita/assistant/game/Board.class
 fr/epita/assistant/game/food/Cheese.class
 fr/epita/assistant/game/food/CookedSteak.class
 fr/epita/assistant/dto/Main.class
+fr/epita/assistant/game/characters/Player$2.class
 fr/epita/assistant/dto/OutputDTO$PlayerInfos.class
 fr/epita/assistant/game/characters/Coatlin.class
 fr/epita/assistant/game/characters/Monster.class

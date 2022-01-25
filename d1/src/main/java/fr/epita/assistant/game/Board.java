@@ -64,9 +64,9 @@ public class Board {
         int isFull = 0;
         int k;
 
-        for (int j = 0; j < size; j++)
+        for (int i = 0; i < size; i++)
         {
-            for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
             {
                 stringBuilder.append("| ");
                 Coord coord = new Coord(i, j);
@@ -113,7 +113,7 @@ public class Board {
     {
         if (direction == Direction.UP)
         {
-            if (player.getCoord().getY() - 1 >= 0)
+            if (player.getCoord().getX() - 1 >= 0)
             {
                 player.move(Direction.UP);
                 System.out.println("You moved to " + player.getCoord().toString());
@@ -126,7 +126,7 @@ public class Board {
         }
         else if (direction == Direction.DOWN)
         {
-            if (player.getCoord().getY() + 1 < size - 1)
+            if (player.getCoord().getX() + 1 <= size - 1)
             {
                 player.move(Direction.DOWN);
                 System.out.println("You moved to " + player.getCoord().toString());
@@ -139,7 +139,7 @@ public class Board {
         }
         else if (direction == Direction.LEFT)
         {
-            if (player.getCoord().getX() - 1 >= 0)
+            if (player.getCoord().getY() - 1 >= 0)
             {
                 player.move(Direction.LEFT);
                 System.out.println("You moved to " + player.getCoord().toString());
@@ -152,7 +152,7 @@ public class Board {
         }
         else
         {
-            if (player.getCoord().getX() + 1 < size - 1)
+            if (player.getCoord().getY() + 1 <= size - 1)
             {
                 player.move(Direction.RIGHT);
                 System.out.println("You moved to " + player.getCoord().toString());
