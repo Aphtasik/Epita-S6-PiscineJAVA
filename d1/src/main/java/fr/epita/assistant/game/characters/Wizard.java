@@ -90,7 +90,7 @@ public class Wizard extends Character {
         {
             player.setDamage(player.getDamage() + 20);
             setManaPoint(getManaPoint() - 15);
-            System.out.println("Intelli Jee screams \"Eclipse !\" and enchants your weapon, you deal now" + player.getDamage() + " damage at each attack");
+            System.out.println("Intelli Jee screams \"Eclipse !\" and enchants your weapon, you deal now " + player.getDamage() + " damage at each attack");
             return true;
         }
 

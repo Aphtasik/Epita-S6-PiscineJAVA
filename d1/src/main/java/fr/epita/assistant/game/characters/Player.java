@@ -81,15 +81,14 @@ public final class Player extends Character implements Attacker {
 
     @Override
     public void printStats() {
+        System.out.println("Health: " + this.health);
+        System.out.println("Damage: " + this.damage);
+        System.out.println("Armour: " + this.armour);
         System.out.println("Intentory: ");
         for (int i = 0; i < inventory.size(); i++)
         {
             System.out.println(inventory.get(i).getName());
         }
-
-        System.out.println("Health: " + this.health);
-        System.out.println("Damage: " + this.damage);
-        System.out.println("Armour: " + this.armour);
     }
 
     @Override
@@ -113,9 +112,9 @@ public final class Player extends Character implements Attacker {
         switch (direction)
         {
             case UP -> this.coord.setX(this.coord.getX() - 1);
-            case DOWN -> this.coord.setX(this.coord.getX() + 1);
+            case DOWN -> this.coord.setX(this.coord.getX() + 0);
             case LEFT -> this.coord.setY(this.coord.getY() - 1);
-            default -> this.coord.setY(this.coord.getY() + 1);
+            default -> this.coord.setY(this.coord.getY() + 0);
         }
     }
 
