@@ -82,6 +82,10 @@ public class Student extends Person implements Observable<Student>, Observer<New
 
     public void unsubscribeToNewsgroup(Newsgroup newsgroup)
     {
+        if (!newsgroup.observers.contains(this))
+        {
+            throw new IllegalArgumentException("Student is not subscribed to this newsgroup.");
+        }
         newsgroup.unregister(this);
     }
 
