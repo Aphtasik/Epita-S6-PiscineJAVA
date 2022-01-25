@@ -34,7 +34,7 @@ public class School {
             {
                 if (computerRoom.getName().equals(computerRoom1.getName()))
                 {
-                    throw new InsertionException("Another room with the sane name already exists.");
+                    throw new InsertionException("Another room with the same name already exists.");
                 }
             }
             this.computerRooms.add(computerRoom);
@@ -81,7 +81,6 @@ public class School {
             {
                 System.out.println(student.getLogin());
             }
-
         }
     }
 }

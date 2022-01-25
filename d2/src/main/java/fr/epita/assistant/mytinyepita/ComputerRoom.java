@@ -129,7 +129,14 @@ public class ComputerRoom {
     {
         for (Student student : students)
         {
-            removeStudent(student);
+            try
+            {
+                removeStudent(student);
+            }
+            catch (IllegalArgumentException exception)
+            {
+                throw exception;
+            }
         }
     }
 
