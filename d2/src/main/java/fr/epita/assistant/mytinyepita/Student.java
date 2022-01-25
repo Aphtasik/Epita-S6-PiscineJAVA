@@ -30,12 +30,12 @@ public class Student extends Person implements Observable<Student>, Observer<New
         if (energy <= 0)
         {
             this.energy = 0;
-            this.status = Status.TIRED;
-
+            setStatus(Status.ASKING_FOR_HELP);
         }
         else
         {
             this.energy = energy;
+            setStatus(Status.OK);
         }
     }
 
@@ -104,6 +104,24 @@ public class Student extends Person implements Observable<Student>, Observer<New
 
     public void goToSleep()
     {
-        return;
+        if (isAvailable())
+        {
+            throw new IllegalStateException("Student must leave the room before going to sleep");
+        }
+        setEnergy(5);
+    }
+
+    public void askForHelp()
+    {
+        if (observers.isEmpty())
+        {
+            System.out.println(this.login + " wished he could be helped...");
+        }
+        if (getStatus().equals(Status.OK))
+        {
+            setStatus(Status.ASKING_FOR_HELP);
+        }
+        System.out.println(this.login + " is asking for help.");
+        fire(this);
     }
 }
