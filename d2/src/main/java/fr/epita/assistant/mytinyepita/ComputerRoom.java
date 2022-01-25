@@ -117,11 +117,13 @@ public class ComputerRoom {
         {
             throw new IllegalArgumentException("Student is not inside the room.");
         }
+
         for (Assistant assistant : assistants)
         {
             student.unregister(assistant);
         }
         student.setAvailable(true);
+        students.remove(student);
         this.size -= 1;
     }
 
@@ -151,6 +153,7 @@ public class ComputerRoom {
             student.unregister(assistant);
         }
         assistant.setAvailable(true);
+        assistants.remove(assistant);
     }
 
     public void removeAssistants(final Assistant... assistants)
