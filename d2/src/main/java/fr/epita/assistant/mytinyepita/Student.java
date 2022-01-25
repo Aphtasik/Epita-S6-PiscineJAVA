@@ -95,9 +95,9 @@ public class Student extends Person implements Observable<Student>, Observer<New
         {
             throw new IllegalStateException("Student must be in a room to work.");
         }
-        else if (this.getStatus().equals(Status.TIRED) && !this.getLogin().equals("peter.parker"))
+        else if (this.getStatus().equals(Status.TIRED))
         {
-            throw new IllegalStateException(this.login + " is too tired to work.");
+            System.out.println(this.login + " is too tired to work.");
         }
         else
         {
