@@ -53,17 +53,17 @@ public final class Player extends Character implements Attacker {
 
     public Food takeFood(String foodName)
     {
-        Food get = new Food() {};
+        Food getFood = null;
         for (int i = 0; i < inventory.size(); i++)
         {
             if (inventory.get(i).getName().equals(foodName))
             {
-               get = inventory.get(i);
+               getFood = inventory.get(i);
                inventory.remove(i);
                break;
             }
         }
-        return get;
+        return getFood;
     }
 
     public void eatFood(Food food)
