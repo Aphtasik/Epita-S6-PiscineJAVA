@@ -106,7 +106,7 @@ public class Student extends Person implements Observable<Student>, Observer<New
     {
         if (isAvailable())
         {
-            throw new IllegalStateException("Student must leave the room before going to sleep");
+            throw new IllegalStateException("Student must leave the room before going to sleep.");
         }
         setEnergy(5);
     }
@@ -115,7 +115,7 @@ public class Student extends Person implements Observable<Student>, Observer<New
     {
         if (observers.isEmpty())
         {
-            System.out.println(this.login + " wished he could be helped...");
+            System.out.println(this.login + " wishes he could be helped...");
         }
         if (getStatus().equals(Status.OK))
         {
