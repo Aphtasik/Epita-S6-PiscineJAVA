@@ -87,7 +87,7 @@ public class Student extends Person implements Observable<Student>, Observer<New
 
     public void work()
     {
-        if (!isAvailable())
+        if (isAvailable())
         {
             throw new IllegalStateException("Student must be in a room to work.");
         }
@@ -104,7 +104,7 @@ public class Student extends Person implements Observable<Student>, Observer<New
 
     public void goToSleep()
     {
-        if (isAvailable())
+        if (!this.isAvailable())
         {
             throw new IllegalStateException("Student must leave the room before going to sleep.");
         }
@@ -117,11 +117,14 @@ public class Student extends Person implements Observable<Student>, Observer<New
         {
             System.out.println(this.login + " wishes he could be helped...");
         }
-        if (getStatus().equals(Status.OK))
+        else
         {
-            setStatus(Status.ASKING_FOR_HELP);
+            if (getStatus().equals(Status.OK))
+            {
+                setStatus(Status.ASKING_FOR_HELP);
+            }
+            System.out.println(this.login + " is asking for help.");
+            fire(this);
         }
-        System.out.println(this.login + " is asking for help.");
-        fire(this);
     }
 }
