@@ -1,62 +1,97 @@
 package fr.epita.assistant.seq;
 
+import java.lang.reflect.Type;
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-public interface Seq<ELEMENT_TYPE> extends ExtendedStream<ELEMENT_TYPE> {
+public interface Seq<T> extends ExtendedStream<T> {
+
+
+    Stream<T> delegate();
+
+    static <TYPE> ExtendedStream<TYPE> of(Stream<TYPE> values) {
+        return new Seq<TYPE>() {
+            @Override
+            public Stream<TYPE> delegate() {
+                //TODO: pas le bon return
+                return values;
+            }
+        };
+    }
+
+    static <TYPE> ExtendedStream<TYPE> of(Collection<TYPE> values)
+    {
+        return new Seq<TYPE>() {
+            @Override
+            public Stream<TYPE> delegate() {
+                return values.stream();
+            }
+        };
+    }
+
+    static <TYPE> ExtendedStream<TYPE> of(TYPE... values)
+    {
+        return new Seq<TYPE>() {
+            @Override
+            public Stream<TYPE> delegate() {
+                return Stream.of(values);
+            }
+        };
+    }
+
     @Override
-    default <KEY_TYPE> Map<KEY_TYPE, ELEMENT_TYPE> toMap(final Function<ELEMENT_TYPE, KEY_TYPE> keyMapper) {
+    default <KEY_TYPE> Map<KEY_TYPE, T> toMap(final Function<T, KEY_TYPE> keyMapper) {
         return null;
     }
 
     @Override
-    default <KEY_TYPE, VALUE_TYPE, MAP_TYPE extends Map<KEY_TYPE, VALUE_TYPE>> MAP_TYPE toMap(final MAP_TYPE map, final Function<ELEMENT_TYPE, KEY_TYPE> keyMapper, final Function<ELEMENT_TYPE, VALUE_TYPE> valueMapper) {
+    default <KEY_TYPE, VALUE_TYPE, MAP_TYPE extends Map<KEY_TYPE, VALUE_TYPE>> MAP_TYPE toMap(final MAP_TYPE map, final Function<T, KEY_TYPE> keyMapper, final Function<T, VALUE_TYPE> valueMapper) {
         return null;
     }
 
     @Override
-    default <KEY_TYPE, VALUE_TYPE> Map<KEY_TYPE, VALUE_TYPE> toMap(final Function<ELEMENT_TYPE, KEY_TYPE> keyMapper, final Function<ELEMENT_TYPE, VALUE_TYPE> valueMapper) {
+    default <KEY_TYPE, VALUE_TYPE> Map<KEY_TYPE, VALUE_TYPE> toMap(final Function<T, KEY_TYPE> keyMapper, final Function<T, VALUE_TYPE> valueMapper) {
         return null;
     }
 
     @Override
-    default List<ELEMENT_TYPE> toList() {
+    default List<T> toList() {
+        return this.collect(Collectors.toList());
+    }
+
+    @Override
+    default <LIST extends List<T>> LIST toList(final LIST list) {
         return null;
     }
 
     @Override
-    default <LIST extends List<ELEMENT_TYPE>> LIST toList(final LIST list) {
+    default Set<T> toSet() {
+        return this.collect(Collectors.toSet());
+    }
+
+    @Override
+    default <SET extends Set<T>> SET toSet(final SET set) {
         return null;
     }
 
     @Override
-    default Set<ELEMENT_TYPE> toSet() {
+    default <ASSOCIATED_TYPE> ExtendedStream<Pair<T, ASSOCIATED_TYPE>> associate(final Supplier<ASSOCIATED_TYPE> supplier) {
         return null;
     }
 
     @Override
-    default <SET extends Set<ELEMENT_TYPE>> SET toSet(final SET set) {
+    default <ASSOCIATED_TYPE> ExtendedStream<Pair<T, ASSOCIATED_TYPE>> associate(final Stream<ASSOCIATED_TYPE> supplier) {
         return null;
     }
 
     @Override
-    default <ASSOCIATED_TYPE> ExtendedStream<Pair<ELEMENT_TYPE, ASSOCIATED_TYPE>> associate(final Supplier<ASSOCIATED_TYPE> supplier) {
+    default ExtendedStream<T> print() {
         return null;
     }
 
     @Override
-    default <ASSOCIATED_TYPE> ExtendedStream<Pair<ELEMENT_TYPE, ASSOCIATED_TYPE>> associate(final Stream<ASSOCIATED_TYPE> supplier) {
-        return null;
-    }
-
-    @Override
-    default ExtendedStream<ELEMENT_TYPE> print() {
-        return null;
-    }
-
-    @Override
-    default ExtendedStream<ELEMENT_TYPE> plus(final Stream<ELEMENT_TYPE> stream) {
+    default ExtendedStream<T> plus(final Stream<T> stream) {
         return null;
     }
 
@@ -70,208 +105,209 @@ public interface Seq<ELEMENT_TYPE> extends ExtendedStream<ELEMENT_TYPE> {
         return null;
     }
 
+    //TODO:
     @Override
-    default <KEY_TYPE> ExtendedStream<Pair<KEY_TYPE, ExtendedStream<ELEMENT_TYPE>>> partition(final Function<ELEMENT_TYPE, KEY_TYPE> pivot) {
+    default <KEY_TYPE> ExtendedStream<Pair<KEY_TYPE, ExtendedStream<T>>> partition(final Function<T, KEY_TYPE> pivot) {
         return null;
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> filter(Predicate<? super ELEMENT_TYPE> predicate) {
-        return null;
+    default Stream<T> filter(Predicate<? super T> predicate) {
+        return delegate().filter(predicate);
     }
 
     @Override
-    default <R> Stream<R> map(Function<? super ELEMENT_TYPE, ? extends R> function) {
-        return null;
+    default <R> Stream<R> map(Function<? super T, ? extends R> function) {
+        return delegate().map(function);
     }
 
     @Override
-    default IntStream mapToInt(ToIntFunction<? super ELEMENT_TYPE> toIntFunction) {
-        return null;
+    default IntStream mapToInt(ToIntFunction<? super T> toIntFunction) {
+        return delegate().mapToInt(toIntFunction);
     }
 
     @Override
-    default LongStream mapToLong(ToLongFunction<? super ELEMENT_TYPE> toLongFunction) {
-        return null;
+    default LongStream mapToLong(ToLongFunction<? super T> toLongFunction) {
+        return delegate().mapToLong(toLongFunction);
     }
 
     @Override
-    default DoubleStream mapToDouble(ToDoubleFunction<? super ELEMENT_TYPE> toDoubleFunction) {
-        return null;
+    default DoubleStream mapToDouble(ToDoubleFunction<? super T> toDoubleFunction) {
+        return delegate().mapToDouble(toDoubleFunction);
     }
 
     @Override
-    default <R> Stream<R> flatMap(Function<? super ELEMENT_TYPE, ? extends Stream<? extends R>> function) {
-        return null;
+    default <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> function) {
+        return delegate().flatMap(function);
     }
 
     @Override
-    default IntStream flatMapToInt(Function<? super ELEMENT_TYPE, ? extends IntStream> function) {
-        return null;
+    default IntStream flatMapToInt(Function<? super T, ? extends IntStream> function) {
+        return delegate().flatMapToInt(function);
     }
 
     @Override
-    default LongStream flatMapToLong(Function<? super ELEMENT_TYPE, ? extends LongStream> function) {
-        return null;
+    default LongStream flatMapToLong(Function<? super T, ? extends LongStream> function) {
+        return delegate().flatMapToLong(function);
     }
 
     @Override
-    default DoubleStream flatMapToDouble(Function<? super ELEMENT_TYPE, ? extends DoubleStream> function) {
-        return null;
+    default DoubleStream flatMapToDouble(Function<? super T, ? extends DoubleStream> function) {
+        return delegate().flatMapToDouble(function);
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> distinct() {
-        return null;
+    default Stream<T> distinct() {
+        return delegate().distinct();
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> sorted() {
-        return null;
+    default Stream<T> sorted() {
+        return delegate().sorted();
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> sorted(Comparator<? super ELEMENT_TYPE> comparator) {
-        return null;
+    default Stream<T> sorted(Comparator<? super T> comparator) {
+        return delegate().sorted(comparator);
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> peek(Consumer<? super ELEMENT_TYPE> consumer) {
-        return null;
+    default Stream<T> peek(Consumer<? super T> consumer) {
+        return delegate().peek(consumer);
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> limit(long l) {
-        return null;
+    default Stream<T> limit(long l) {
+        return delegate().limit(l);
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> skip(long l) {
-        return null;
+    default Stream<T> skip(long l) {
+        return delegate().skip(l);
     }
 
     @Override
-    default void forEach(Consumer<? super ELEMENT_TYPE> consumer) {
-
+    default void forEach(Consumer<? super T> consumer) {
+        delegate().forEach(consumer);
     }
 
     @Override
-    default void forEachOrdered(Consumer<? super ELEMENT_TYPE> consumer) {
-
+    default void forEachOrdered(Consumer<? super T> consumer) {
+        forEachOrdered(consumer);
     }
 
     @Override
     default Object[] toArray() {
-        return new Object[0];
+        return delegate().toArray();
     }
 
     @Override
     default <A> A[] toArray(IntFunction<A[]> intFunction) {
-        return null;
+        return delegate().toArray(intFunction);
     }
 
     @Override
-    default ELEMENT_TYPE reduce(ELEMENT_TYPE element_type, BinaryOperator<ELEMENT_TYPE> binaryOperator) {
-        return null;
+    default T reduce(T t, BinaryOperator<T> binaryOperator) {
+        return delegate().reduce(t, binaryOperator);
     }
 
     @Override
-    default Optional<ELEMENT_TYPE> reduce(BinaryOperator<ELEMENT_TYPE> binaryOperator) {
-        return Optional.empty();
+    default Optional<T> reduce(BinaryOperator<T> binaryOperator) {
+        return delegate().reduce(binaryOperator);
     }
 
     @Override
-    default <U> U reduce(U u, BiFunction<U, ? super ELEMENT_TYPE, U> biFunction, BinaryOperator<U> binaryOperator) {
-        return null;
+    default <U> U reduce(U u, BiFunction<U, ? super T, U> biFunction, BinaryOperator<U> binaryOperator) {
+        return delegate().reduce(u, biFunction, binaryOperator);
     }
 
     @Override
-    default <R> R collect(Supplier<R> supplier, BiConsumer<R, ? super ELEMENT_TYPE> biConsumer, BiConsumer<R, R> biConsumer1) {
-        return null;
+    default <R> R collect(Supplier<R> supplier, BiConsumer<R, ? super T> biConsumer, BiConsumer<R, R> biConsumer1) {
+        return delegate().collect(supplier, biConsumer, biConsumer1);
     }
 
     @Override
-    default <R, A> R collect(Collector<? super ELEMENT_TYPE, A, R> collector) {
-        return null;
+    default <R, A> R collect(Collector<? super T, A, R> collector) {
+        return delegate().collect(collector);
     }
 
     @Override
-    default Optional<ELEMENT_TYPE> min(Comparator<? super ELEMENT_TYPE> comparator) {
-        return Optional.empty();
+    default Optional<T> min(Comparator<? super T> comparator) {
+        return delegate().min(comparator);
     }
 
     @Override
-    default Optional<ELEMENT_TYPE> max(Comparator<? super ELEMENT_TYPE> comparator) {
-        return Optional.empty();
+    default Optional<T> max(Comparator<? super T> comparator) {
+        return delegate().max(comparator);
     }
 
     @Override
     default long count() {
-        return 0;
+        return delegate().count();
     }
 
     @Override
-    default boolean anyMatch(Predicate<? super ELEMENT_TYPE> predicate) {
-        return false;
+    default boolean anyMatch(Predicate<? super T> predicate) {
+        return delegate().anyMatch(predicate);
     }
 
     @Override
-    default boolean allMatch(Predicate<? super ELEMENT_TYPE> predicate) {
-        return false;
+    default boolean allMatch(Predicate<? super T> predicate) {
+        return delegate().allMatch(predicate);
     }
 
     @Override
-    default boolean noneMatch(Predicate<? super ELEMENT_TYPE> predicate) {
-        return false;
+    default boolean noneMatch(Predicate<? super T> predicate) {
+        return delegate().noneMatch(predicate);
     }
 
     @Override
-    default Optional<ELEMENT_TYPE> findFirst() {
-        return Optional.empty();
+    default Optional<T> findFirst() {
+        return delegate().findFirst();
     }
 
     @Override
-    default Optional<ELEMENT_TYPE> findAny() {
-        return Optional.empty();
+    default Optional<T> findAny() {
+        return delegate().findAny();
     }
 
     @Override
-    default Iterator<ELEMENT_TYPE> iterator() {
-        return null;
+    default Iterator<T> iterator() {
+        return delegate().iterator();
     }
 
     @Override
-    default Spliterator<ELEMENT_TYPE> spliterator() {
-        return null;
+    default Spliterator<T> spliterator() {
+        return delegate().spliterator();
     }
 
     @Override
     default boolean isParallel() {
-        return false;
+        return delegate().isParallel();
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> sequential() {
-        return null;
+    default Stream<T> sequential() {
+        return delegate().sequential();
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> parallel() {
-        return null;
+    default Stream<T> parallel() {
+        return delegate().parallel();
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> unordered() {
-        return null;
+    default Stream<T> unordered() {
+        return delegate().unordered();
     }
 
     @Override
-    default Stream<ELEMENT_TYPE> onClose(Runnable runnable) {
-        return null;
+    default Stream<T> onClose(Runnable runnable) {
+        return delegate().onClose(runnable);
     }
 
     @Override
     default void close() {
-
+        delegate().close();
     }
 }
