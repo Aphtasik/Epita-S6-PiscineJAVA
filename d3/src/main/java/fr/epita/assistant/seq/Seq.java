@@ -8,36 +8,22 @@ import java.util.stream.*;
 public interface Seq<T> extends ExtendedStream<T> {
 
 
+    static <TYPE> Seq<TYPE> of(List<TYPE> values) {
+        return values::stream;
+    }
+
+    static <TYPE> Seq<TYPE> of(TYPE... values) {
+        return () -> Stream.of(values);
+    }
+
+    static <TYPE> Seq<TYPE> of(Stream<TYPE> values) {
+        return () -> values;
+    }
+
+
     Stream<T> delegate();
 
-    static <TYPE> ExtendedStream<TYPE> of(Stream<TYPE> values) {
-        return new Seq<TYPE>() {
-            @Override
-            public Stream<TYPE> delegate() {
-                return values;
-            }
-        };
-    }
 
-    static <TYPE> ExtendedStream<TYPE> of(Collection<TYPE> values)
-    {
-        return new Seq<TYPE>() {
-            @Override
-            public Stream<TYPE> delegate() {
-                return values.stream();
-            }
-        };
-    }
-
-    static <TYPE> ExtendedStream<TYPE> of(TYPE... values)
-    {
-        return new Seq<TYPE>() {
-            @Override
-            public Stream<TYPE> delegate() {
-                return Stream.of(values);
-            }
-        };
-    }
 
     @Override
     default <KEY_TYPE> Map<KEY_TYPE, T> toMap(final Function<T, KEY_TYPE> keyMapper) {
