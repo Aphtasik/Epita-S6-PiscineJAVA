@@ -42,27 +42,31 @@ public interface Seq<T> extends ExtendedStream<T> {
 
     @Override
     default <KEY_TYPE> Map<KEY_TYPE, T> toMap(final Function<T, KEY_TYPE> keyMapper) {
-        return null;
+        return toMap(new HashMap<KEY_TYPE, T>(), keyMapper, Function.identity());
     }
 
     @Override
     default <KEY_TYPE, VALUE_TYPE, MAP_TYPE extends Map<KEY_TYPE, VALUE_TYPE>> MAP_TYPE toMap(final MAP_TYPE map, final Function<T, KEY_TYPE> keyMapper, final Function<T, VALUE_TYPE> valueMapper) {
-        return null;
+        forEach(elt -> map.put(keyMapper.apply(elt), valueMapper.apply(elt)));
+        return map;
     }
 
     @Override
     default <KEY_TYPE, VALUE_TYPE> Map<KEY_TYPE, VALUE_TYPE> toMap(final Function<T, KEY_TYPE> keyMapper, final Function<T, VALUE_TYPE> valueMapper) {
-        return null;
+        return toMap(new HashMap<KEY_TYPE, VALUE_TYPE>(), keyMapper, valueMapper);
     }
 
     @Override
     default List<T> toList() {
-        return this.collect(Collectors.toList());
+        return this.collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override
     default <LIST extends List<T>> LIST toList(final LIST list) {
-        return null;
+        for (var elt : this.toList()) {
+            list.add(elt);
+        }
+        return list;
     }
 
     @Override
@@ -72,7 +76,10 @@ public interface Seq<T> extends ExtendedStream<T> {
 
     @Override
     default <SET extends Set<T>> SET toSet(final SET set) {
-        return null;
+        for (var elt : this.toSet()) {
+            set.add(elt);
+        }
+        return set;
     }
 
     @Override
@@ -87,28 +94,34 @@ public interface Seq<T> extends ExtendedStream<T> {
 
     @Override
     default ExtendedStream<T> print() {
-        return null;
+        this.forEach(System.out::println);
+        return this;
     }
 
     @Override
     default ExtendedStream<T> plus(final Stream<T> stream) {
-        return null;
+        return Seq.of(Stream.concat(this, stream));
     }
+
+    //TODO: changer ces merdes
 
     @Override
     default Object join(final String delimiter) {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        forEach(elt -> stringBuilder.append(elt).append(delimiter));
+        return stringBuilder.substring(0, stringBuilder.length() - delimiter.length());
     }
 
     @Override
     default String join() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        forEach(stringBuilder::append);
+        return stringBuilder.toString();
     }
 
-    //TODO:
     @Override
     default <KEY_TYPE> ExtendedStream<Pair<KEY_TYPE, ExtendedStream<T>>> partition(final Function<T, KEY_TYPE> pivot) {
-        return null;
+        return Seq.of(map(pivot).map(e -> new Pair<>(e, Seq.of(filter(elt -> pivot.apply(elt).equals(e))))));
     }
 
     @Override

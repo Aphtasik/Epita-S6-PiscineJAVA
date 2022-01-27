@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Test set: fr.epita.assistant.seq.ExtendedStreamTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 1, Errors: 7, Skipped: 0, Time elapsed: 0.091 s <<< FAILURE! - in fr.epita.assistant.seq.ExtendedStreamTest
+toMapKey  Time elapsed: 0.008 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.util.Map.size()" because "map" is null
+	at fr.epita.assistant.seq.ExtendedStreamTest.lambda$toMapKey$3(ExtendedStreamTest.java:76)
+
+partition  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "fr.epita.assistant.seq.ExtendedStream.plus(java.util.stream.Stream)" because "l.second" is null
+	at fr.epita.assistant.seq.ExtendedStreamTest.lambda$partition$14(ExtendedStreamTest.java:199)
+
+toMapKeyValueMap  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.util.Map.size()" because "map" is null
+	at fr.epita.assistant.seq.ExtendedStreamTest.lambda$toMapKeyValueMap$2(ExtendedStreamTest.java:63)
+
+toMapKeyValue  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.util.Map.size()" because "map" is null
+	at fr.epita.assistant.seq.ExtendedStreamTest.lambda$toMapKeyValue$0(ExtendedStreamTest.java:49)
+
+associateWithSupplier  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "fr.epita.assistant.seq.ExtendedStream.toList()" because the return value of "fr.epita.assistant.seq.ExtendedStream.associate(java.util.function.Supplier)" is null
+	at fr.epita.assistant.seq.ExtendedStreamTest.lambda$associateWithSupplier$8(ExtendedStreamTest.java:147)
+
+plus  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "fr.epita.assistant.seq.ExtendedStream.join()" because "es" is null
+	at fr.epita.assistant.seq.ExtendedStreamTest.lambda$plus$10(ExtendedStreamTest.java:175)
+
+associateWithStream  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "fr.epita.assistant.seq.ExtendedStream.toList()" because the return value of "fr.epita.assistant.seq.ExtendedStream.associate(java.util.stream.Stream)" is null
+	at fr.epita.assistant.seq.ExtendedStreamTest.lambda$associateWithStream$9(ExtendedStreamTest.java:162)
+
+joinWithDelimiter  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <a-b-c-d-e-f> but was: <a-b-c-d-e-f->
+	at fr.epita.assistant.seq.ExtendedStreamTest.lambda$joinWithDelimiter$12(ExtendedStreamTest.java:191)
+
