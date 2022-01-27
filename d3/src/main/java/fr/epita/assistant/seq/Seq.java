@@ -14,7 +14,6 @@ public interface Seq<T> extends ExtendedStream<T> {
         return new Seq<TYPE>() {
             @Override
             public Stream<TYPE> delegate() {
-                //TODO: pas le bon return
                 return values;
             }
         };
@@ -84,12 +83,30 @@ public interface Seq<T> extends ExtendedStream<T> {
 
     @Override
     default <ASSOCIATED_TYPE> ExtendedStream<Pair<T, ASSOCIATED_TYPE>> associate(final Supplier<ASSOCIATED_TYPE> supplier) {
-        return null;
+        ArrayList list = new ArrayList();
+        forEach(elt -> list.add(new Pair<T, ASSOCIATED_TYPE>(elt, supplier.get())));
+        return Seq.of(list);
     }
 
     @Override
     default <ASSOCIATED_TYPE> ExtendedStream<Pair<T, ASSOCIATED_TYPE>> associate(final Stream<ASSOCIATED_TYPE> supplier) {
-        return null;
+        List l2 = supplier.toList();
+        List l1 = this.toList();
+        List res = new ArrayList();
+        int min = 0;
+        if (l1.size() > l2.size())
+        {
+            min = l2.size();
+        }
+        else
+        {
+            min = l1.size();
+        }
+        for (int i = 0; i < min; i++)
+        {
+            res.add(new Pair<>(l1.get(i), l2.get(i)));
+        }
+        return Seq.of(res);
     }
 
     @Override
